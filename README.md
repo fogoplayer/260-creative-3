@@ -14,6 +14,7 @@
        - isLifted
        - isRare
    4. Drag-drop
+   5. Include a total score, sum of all tile points on the board 
 4. Homepage
    1. Pictures
    2. Text
