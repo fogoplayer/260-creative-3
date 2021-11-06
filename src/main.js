@@ -8,7 +8,8 @@ Vue.config.productionTip = false
 
 let data = {
   letters: mock,
-  username: ""
+  username: "",
+  loggedIn: false
 }
 
 new Vue({

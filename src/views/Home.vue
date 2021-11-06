@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/sLogo.jpeg" />
+    <img alt="Scrabble logo" src="../assets/sLogo.jpeg" />
     <HelloWorld msg="Welcome to Ultimate Scrabble" />
   </div>
 </template>

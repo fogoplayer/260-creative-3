@@ -1,12 +1,13 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <p>
-      Simply Login and let the games begin!
+    <p v-if="!this.$root.$data.loggedIn">
+      Simply <a href="/login">Login</a> and let the games begin!
       <!-- <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
         >vue-cli documentation</a
       >. -->
     </p>
+    <p v-else>Get back to the game {{ this.$root.$data.username }}!</p>
     <!-- <h3>Installed CLI Plugins</h3>
     <ul>
       <li>
@@ -116,7 +117,8 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: blue;
+  text-decoration: none;
 }
 p {
   font-size: 20px;
