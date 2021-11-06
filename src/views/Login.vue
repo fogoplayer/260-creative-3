@@ -70,11 +70,12 @@ h1 {
 }
 body {
   background: white;
-  font-family: "Inter UI", sans-serif;
+
   margin: 0;
   padding: 20px;
 }
 .loginForm {
+  padding-top: 5%;
   display: flex;
   flex-direction: column;
   height: calc(100% - 40px);
