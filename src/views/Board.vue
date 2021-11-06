@@ -22,13 +22,32 @@
         </div>
       </div>
     </dir>
+    <div>
+      <section>
+        <table>
+          <tr v-for="i in 15" :key="i">
+            <td v-for="j in 15" :key="j">{{ i }} {{ j }}</td>
+          </tr>
+        </table>
+      </section>
+      <section>
+        <div v-for="letter in letters" :key="letter.letter"></div>
+      </section>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "Board",
+<<<<<<< HEAD
   methods: {
+=======
+  props: {
+    letters: this.$root.data.letters,
+  },
+  computed: {
+>>>>>>> e74d4ce1aab398ea2d2da7455fa8b94707c3d35b
     description(boolval) {
       if (boolval) {
         return "Vowel";
