@@ -5,9 +5,13 @@
     </h1>
     <h1 v-else>{{ this.$root.$data.username }}'s Board</h1>
 
-    <dir class="LetterBank">
+    <!-- <dir class="LetterBank">
       <div class="letters">
-        <div class="letter" v-for="letter in letters" :key="letter.letter">
+        <div
+          class="letter"
+          v-for="letter in this.$root.data.letters"
+          :key="letter.letter"
+        >
           <div class="info">
             <h1>{{ letter.letter }}</h1>
             <p>description(letter.vowel)</p>
@@ -17,7 +21,7 @@
           </div>
         </div>
       </div>
-    </dir>
+    </dir> -->
     <div>
       <section>
         <table>
@@ -27,7 +31,10 @@
         </table>
       </section>
       <section>
-        <div v-for="letter in letters" :key="letter.letter"></div>
+        {{ this.$root.data }}
+        <div v-for="letter in this.$root.$data.letters" :key="letter.letter">
+          {{ letter.letter }}
+        </div>
       </section>
     </div>
   </div>
@@ -36,9 +43,6 @@
 <script>
 export default {
   name: "Board",
-  props: {
-    letters: this.$root.data.letters,
-  },
   computed: {
     description(boolval) {
       if (boolval) {
