@@ -7,13 +7,17 @@
 
     <dir class="LetterBank">
       <div class="letters">
-        <div class="letter" v-for="letter in letters" :key="letter.letter">
+        <div
+          class="letter"
+          v-for="letter in this.$root.$data.letters"
+          :key="letter.letter"
+        >
           <div class="info">
             <h1>{{ letter.letter }}</h1>
-            <p>description(letter.vowel)</p>
+            <p>{{ description(letter.vowel) }}</p>
           </div>
           <div class="pointValue">
-            <h2>{{ product.pointValue }}</h2>
+            <h2>{{ letter.pointValue }}</h2>
           </div>
         </div>
       </div>
@@ -24,7 +28,7 @@
 <script>
 export default {
   name: "Board",
-  computed: {
+  methods: {
     description(boolval) {
       if (boolval) {
         return "Vowel";
