@@ -1,20 +1,24 @@
 # 260-creative-3
 
-## Roadmap
-1. Login
-   1. Field for gamertag
-3. Game board
-   1. v-if: no username, link to login page
-   2. Board-HTML table
-   3. Set of all letters
-       - Vowel
-       - Point value
-       - Letter
-       - Number used
-       - isLifted
-       - isRare
-   4. Drag-drop
-   5. Include a total score, sum of all tile points on the board 
-4. Homepage
-   1. Pictures
-   2. Text
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
