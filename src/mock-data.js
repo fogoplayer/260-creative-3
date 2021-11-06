@@ -206,3 +206,5 @@ let mock = [{
     isLifted: false,
     isRare: true
 }];
+
+export default mock;
