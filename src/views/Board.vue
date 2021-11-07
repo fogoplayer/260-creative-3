@@ -59,7 +59,7 @@ export default {
 }
 
 .game-wrapper {
-  --letter-size: min(6.5vmin, max(1.5rem, 4vmax));
+  --letter-size: min(6.5vmin, max(1.5rem, 6vmax));
   display: flex;
   flex-flow: row wrap;
   gap: 1em;
