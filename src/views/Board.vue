@@ -25,7 +25,15 @@
     <div class="game-wrapper">
       <section class="board">
         <div class="board-table">
-          <div class="space" v-for="i in 15 * 15" :key="i">{{ i }}</div>
+          <div
+            class="space"
+            v-on:dragover.prevent
+            @drop="dropItem"
+            v-for="i in 15 * 15"
+            :key="i"
+          >
+            {{ i }}
+          </div>
         </div>
       </section>
       <section class="letters">
@@ -36,6 +44,8 @@
             (letter.vowel ? 'vowel ' : '') +
             (letter.isRare ? 'rare ' : '')
           "
+          draggable="true"
+          @dragstart="dragItem(letter)"
           v-for="letter in this.$root.$data.letters"
           :key="letter.letter"
         >
@@ -50,6 +60,26 @@
 <script>
 export default {
   name: "Board",
+  data() {
+    return {
+      draggedItem: {},
+    };
+  },
+  methods: {
+    dragItem(letter) {
+      this.draggedItem = `<div
+          class="letter ${
+            (letter.vowel ? "vowel " : "") + (letter.isRare ? "rare " : "")
+          }"
+          >
+          <div class="main-letter">${letter.letter}</div>
+          <div class="point-value">${letter.pointValue}</div>
+        </div>`;
+    },
+    dropItem(event) {
+      event.target.innerHTML = this.draggedItem;
+    },
+  },
 };
 </script>
 
@@ -105,6 +135,7 @@ export default {
   align-items: center;
 
   font-size: var(--letter-size);
+  user-select: none;
 }
 
 .letter.vowel {
