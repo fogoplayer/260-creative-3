@@ -24,11 +24,9 @@
     </dir> -->
     <div>
       <section class="board">
-        <table class="board-table">
-          <tr v-for="i in 15" :key="i">
-            <td v-for="j in 15" :key="j">{{ i }} {{ j }}</td>
-          </tr>
-        </table>
+        <div class="board-table">
+          <div class="space" v-for="i in 15 * 15" :key="i">{{ i }}</div>
+        </div>
       </section>
       <section class="letters">
         {{ this.$root.data }}
@@ -41,8 +39,8 @@
           v-for="letter in this.$root.$data.letters"
           :key="letter.letter"
         >
-          <span class="main-letter">{{ letter.letter }}</span>
-          <span class="point-value">{{ letter.pointValue }}</span>
+          <div class="main-letter">{{ letter.letter }}</div>
+          <div class="point-value">{{ letter.pointValue }}</div>
         </div>
       </section>
     </div>
@@ -57,17 +55,26 @@ export default {
 
 <style scoped>
 .board-page {
-  --letter-size: max(1.5rem, 6.65vmin);
+  --letter-size: max(1.5rem, 4vmax);
 }
 
 .board-table {
-  border-collapse: collapse;
+  display: grid;
+  grid-template-rows: repeat(15, var(--letter-size));
+  grid-template-columns: repeat(15, var(--letter-size));
 }
 
-.board td {
+.board .space {
   border: 2px solid black;
-  width: var(--letter-size);
+  min-width: var(--letter-size);
   height: var(--letter-size);
+  min-height: var(--letter-size);
+  background: lightskyblue;
+}
+
+.board div:nth-child(2n) .space:nth-child(2n),
+.board div:nth-child(2n + 1) .space:nth-child(2n + 1) {
+  background: lightcoral;
 }
 
 .letters {
@@ -77,11 +84,17 @@ export default {
 
 .letter {
   flex: 0 0 var(--letter-size);
+
   height: var(--letter-size);
-  font-size: 80%;
   border: 2px solid black;
   position: relative;
   background: #ba8c63;
+  padding: 0.1em;
+
+  justify-content: center;
+  align-items: center;
+
+  font-size: var(--letter-size);
 }
 
 .letter.vowel {
@@ -91,14 +104,16 @@ export default {
   color: gold;
 }
 
-.letter-main {
+.main-letter {
+  font-size: 0.7em;
   font-weight: 900;
+  display: block;
 }
 
 .point-value {
   font-size: 0.25em;
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 0.4em;
+  right: 0.4em;
 }
 </style>
