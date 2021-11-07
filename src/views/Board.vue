@@ -54,8 +54,12 @@ export default {
 </script>
 
 <style scoped>
+* {
+  box-sizing: border-box;
+}
+
 .board-page {
-  --letter-size: max(1.5rem, 4vmax);
+  --letter-size: min(6.5vmin, max(1.5rem, 4vmax));
 }
 
 .board-table {
@@ -105,7 +109,7 @@ export default {
 }
 
 .main-letter {
-  font-size: 0.7em;
+  font-size: 0.5em;
   font-weight: 900;
   display: block;
 }
