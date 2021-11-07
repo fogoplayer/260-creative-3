@@ -32,10 +32,9 @@
             v-for="i in 15 * 15"
             :key="i"
           >
-            {{ i }}
             <letter-vue
-              v-if="isPlaced() && i <= this.placedPieces.length - 1"
-              :letter="this.placedPieces && this.placedPieces[i]"
+              v-if="'' + i in placedPieces"
+              :letter="placedPieces['' + i]"
             />
           </div>
         </div>
@@ -45,9 +44,8 @@
         <letter-vue
           v-for="letter in this.$root.$data.letters"
           :letter="letter"
-          draggable="true"
-          @dragstart="dragItem(letter)"
           :key="letter.letter"
+          :dragItem="dragItem.bind(this)"
         >
         </letter-vue>
       </section>
@@ -59,23 +57,23 @@
 import LetterVue from "../components/Letter.vue";
 export default {
   name: "Board",
-  isplaced: false,
   components: { LetterVue },
   data() {
     return {
+      isplaced: false,
       draggedItem: {},
       placedPieces: {},
     };
   },
   methods: {
-    isPlaced() {
-      return this.isplaced;
-    },
     dragItem(letter) {
+      console.log(letter);
       this.draggedItem = letter;
     },
     dropItem(i) {
-      this.placedPieces[i] = this.draggedItem;
+      console.log("dropping");
+      this.placedPieces["" + i] = this.draggedItem;
+      this.$forceUpdate();
     },
   },
 };

@@ -18,7 +18,7 @@
 <script>
 export default {
   name: "Letter",
-  props: ["letter"],
+  props: ["letter", "dragItem"],
 };
 </script>
 
