@@ -3,7 +3,7 @@
     <h1>This is the board, please login to play</h1>
   </div>
   <div class="board-page" v-else>
-    <h1>{{ this.$root.$data.username }}'s Board</h1>
+    <h1>{{ this.$root.$data.username }}'s Board Score: {{ getScore() }}</h1>
 
     <!-- <dir class="LetterBank">
       <div class="letters">
@@ -66,6 +66,15 @@ export default {
     };
   },
   methods: {
+    getScore() {
+      let sum = 0;
+      for (let i = 0; i < this.$root.$data.letters.length; i++) {
+        sum +=
+          this.$root.$data.letters[i].timesUsed *
+          this.$root.$data.letters[i].pointValue;
+      }
+      return sum;
+    },
     dragItem(letter) {
       console.log(letter);
       this.draggedItem = letter;
@@ -107,12 +116,14 @@ export default {
   min-width: var(--letter-size);
   height: var(--letter-size);
   min-height: var(--letter-size);
-  background: lightskyblue;
+  /* background: lightskyblue; */
+  background: black;
 }
 
 .board div:nth-child(2n) .space:nth-child(2n),
 .board div:nth-child(2n + 1) .space:nth-child(2n + 1) {
-  background: lightcoral;
+  /* background: lightcoral; */
+  background: white;
 }
 
 .letters {
