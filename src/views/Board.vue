@@ -34,7 +34,7 @@
           >
             {{ i }}
             <letter-vue
-              v-if="this.placedPieces && this.placedPieces[i]"
+              v-if="isPlaced() && i <= this.placedPieces.length - 1"
               :letter="this.placedPieces && this.placedPieces[i]"
             />
           </div>
@@ -59,6 +59,7 @@
 import LetterVue from "../components/Letter.vue";
 export default {
   name: "Board",
+  isplaced: false,
   components: { LetterVue },
   data() {
     return {
@@ -67,6 +68,9 @@ export default {
     };
   },
   methods: {
+    isPlaced() {
+      return this.isplaced;
+    },
     dragItem(letter) {
       this.draggedItem = letter;
     },
