@@ -22,7 +22,7 @@
         </div>
       </div>
     </dir> -->
-    <div>
+    <div class="game-wrapper">
       <section class="board">
         <div class="board-table">
           <div class="space" v-for="i in 15 * 15" :key="i">{{ i }}</div>
@@ -58,8 +58,12 @@ export default {
   box-sizing: border-box;
 }
 
-.board-page {
+.game-wrapper {
   --letter-size: min(6.5vmin, max(1.5rem, 4vmax));
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1em;
+  align-items: flex-start;
 }
 
 .board-table {
@@ -82,6 +86,8 @@ export default {
 }
 
 .letters {
+  flex: 1 1 calc(2 * var(--letter-size));
+
   display: flex;
   flex-flow: row wrap;
 }
