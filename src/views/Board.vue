@@ -28,56 +28,50 @@
           <div
             class="space"
             v-on:dragover.prevent
-            @drop="dropItem"
+            @drop="dropItem(i)"
             v-for="i in 15 * 15"
             :key="i"
           >
             {{ i }}
+            <letter-vue
+              v-if="this.placedPieces && this.placedPieces[i]"
+              :letter="this.placedPieces && this.placedPieces[i]"
+            />
           </div>
         </div>
       </section>
       <section class="letters">
         {{ this.$root.data }}
-        <div
-          :class="
-            'letter ' +
-            (letter.vowel ? 'vowel ' : '') +
-            (letter.isRare ? 'rare ' : '')
-          "
+        <letter-vue
+          v-for="letter in this.$root.$data.letters"
+          :letter="letter"
           draggable="true"
           @dragstart="dragItem(letter)"
-          v-for="letter in this.$root.$data.letters"
           :key="letter.letter"
         >
-          <div class="main-letter">{{ letter.letter }}</div>
-          <div class="point-value">{{ letter.pointValue }}</div>
-        </div>
+        </letter-vue>
       </section>
     </div>
   </div>
 </template>
 
 <script>
+import LetterVue from "../components/Letter.vue";
 export default {
   name: "Board",
+  components: { LetterVue },
   data() {
     return {
       draggedItem: {},
+      placedPieces: {},
     };
   },
   methods: {
     dragItem(letter) {
-      this.draggedItem = `<div
-          class="letter ${
-            (letter.vowel ? "vowel " : "") + (letter.isRare ? "rare " : "")
-          }"
-          >
-          <div class="main-letter">${letter.letter}</div>
-          <div class="point-value">${letter.pointValue}</div>
-        </div>`;
+      this.draggedItem = letter;
     },
-    dropItem(event) {
-      event.target.innerHTML = this.draggedItem;
+    dropItem(i) {
+      this.placedPieces[i] = this.draggedItem;
     },
   },
 };
@@ -120,41 +114,5 @@ export default {
 
   display: flex;
   flex-flow: row wrap;
-}
-
-.letter {
-  flex: 0 0 var(--letter-size);
-
-  height: var(--letter-size);
-  border: 2px solid black;
-  position: relative;
-  background: #ba8c63;
-  padding: 0.1em;
-
-  justify-content: center;
-  align-items: center;
-
-  font-size: var(--letter-size);
-  user-select: none;
-}
-
-.letter.vowel {
-  color: darkred;
-}
-.letter.rare {
-  color: gold;
-}
-
-.main-letter {
-  font-size: 0.5em;
-  font-weight: 900;
-  display: block;
-}
-
-.point-value {
-  font-size: 0.25em;
-  position: absolute;
-  bottom: 0.4em;
-  right: 0.4em;
 }
 </style>
