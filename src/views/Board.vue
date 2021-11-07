@@ -1,9 +1,9 @@
 <template>
-  <div class="board-page">
-    <h1 v-if="this.$root.$data.username == ''">
-      This is the board, please login to play
-    </h1>
-    <h1 v-else>{{ this.$root.$data.username }}'s Board</h1>
+  <div v-if="this.$root.$data.username == ''" class="board-page">
+    <h1>This is the board, please login to play</h1>
+  </div>
+  <div class="board-page" v-else>
+    <h1>{{ this.$root.$data.username }}'s Board</h1>
 
     <!-- <dir class="LetterBank">
       <div class="letters">
