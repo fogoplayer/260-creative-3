@@ -9,15 +9,15 @@
       <div class="letters">
         <div
           class="letter"
-          v-for="letter in this.$root.data.letters"
+          v-for="letter in this.$root.$data.letters"
           :key="letter.letter"
         >
           <div class="info">
             <h1>{{ letter.letter }}</h1>
-            <p>description(letter.vowel)</p>
+            <p>{{ description(letter.vowel) }}</p>
           </div>
           <div class="pointValue">
-            <h2>{{ product.pointValue }}</h2>
+            <h2>{{ letter.pointValue }}</h2>
           </div>
         </div>
       </div>
