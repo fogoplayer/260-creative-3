@@ -69,10 +69,14 @@ export default {
     dragItem(letter) {
       console.log(letter);
       this.draggedItem = letter;
+      this.draggedItem.index = letter.letter.charCodeAt() - 65;
+      this.$root.$data.letters[this.draggedItem.index].isLifted = true;
     },
     dropItem(i) {
       console.log("dropping");
       this.placedPieces["" + i] = this.draggedItem;
+      this.$root.$data.letters[this.draggedItem.index].isLifted = false;
+      this.$root.$data.letters[this.draggedItem.index].timesUsed++;
       this.$forceUpdate();
     },
   },
