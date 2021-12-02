@@ -26,6 +26,7 @@ const upload = multer({
 // Create a scheme for users in the museum: a title (name/username) and a path to a profilePicture, user bio, highscore, and gamesPlayed.
 const itemSchema = new mongoose.Schema({
     title: String,
+    password: String,
     path: String,
     bio: String,
     highScore: Number,
