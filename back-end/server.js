@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/museum', {
 // Configure multer so that it will upload to '../front-end/public/images'
 const multer = require('multer')
 const upload = multer({
-    dest: '../front-end/public/users/',
+    dest: '../front-end/public/images/',
     limits: {
         fileSize: 10000000
     }
@@ -78,7 +78,9 @@ app.post('/api/items', async (req, res) => {
     const item = new Item({
         title: req.body.title,
         path: req.body.path,
-        description: req.body.description,
+        bio: req.body.bio,
+        highScore: 0,
+        gamesPlayed: 0,
     });
     try {
         await item.save();
