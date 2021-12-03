@@ -78,6 +78,7 @@ app.post('/api/photos', upload.single('photo'), async (req, res) => {
 app.post('/api/items', async (req, res) => {
     const item = new Item({
         title: req.body.title,
+        password: req.body.password,
         path: req.body.path,
         bio: req.body.bio,
         highScore: 0,
