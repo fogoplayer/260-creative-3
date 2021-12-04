@@ -227,6 +227,7 @@ export default {
           const { title, password, path, bio, highScore, gamesPlayed } = r;
 
           this.$root.$data.username = title;
+          this.$root.$root.title = title;
           this.$root.$data.loggedIn = false;
           this.$root.$data.password = password;
           this.$root.$data.path = path;
