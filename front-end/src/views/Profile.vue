@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="">
-    <input class="username" :value="this.$root.$data.username" />
+    <input class="username" v-model="$root.$data.username" />
     <section class="stats">
       High Score: {{ this.$root.$data.highScore }}<br />
       Games Played:
@@ -10,10 +10,7 @@
     <fieldset>
       <label>
         Password
-        <input
-          class="password"
-          type="password"
-          :value="this.$root.$data.password"
+        <input class="password" type="password" v-model="$root.$data.password"
       /></label>
       <label for="bio"> Bio</label>
       <textarea id="bio" class="bio" v-model="this.$root.$data.bio"> </textarea>
