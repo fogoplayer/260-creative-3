@@ -52,7 +52,6 @@ app.delete('/api/items/:id', async (req, res) => {
 
 // Get a list of all of the items/users in the db.
 app.get('/api/items', async (req, res) => {
-    console.log("Get Route")
     try {
         let items = await Item.find();
         res.send(items);
@@ -92,5 +91,15 @@ app.post('/api/items', async (req, res) => {
         res.sendStatus(500);
     }
 });
+
+app.get('/api/items/:title', async (req, res) => {
+    try {
+        const currUser = await Item.find({ title: req.params.title });
+        res.json(currUser).status(200);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+})
 
 app.listen(3000, () => console.log('Server listening on port 3000!'));
