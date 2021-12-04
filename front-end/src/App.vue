@@ -2,10 +2,12 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
+      <router-link to="/profile">Profile</router-link> |
+
       <span v-if="!this.$root.$data.loggedIn"
         ><router-link to="/login">Login</router-link> |
-        <router-link to="/signup">Sign Up</router-link> |</span
-      >
+        <router-link to="/signup">Sign Up</router-link> |
+      </span>
 
       <router-link to="/board">Board</router-link>
     </div>

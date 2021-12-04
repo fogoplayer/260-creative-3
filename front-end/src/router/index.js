@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Board from '../views/Board.vue'
 import SignUp from '../views/SignUp.vue'
+import Profile from '../views/Profile.vue'
+// import { component } from 'vue/types/umd'
 
 Vue.use(VueRouter)
 
@@ -31,6 +33,11 @@ const routes = [
     path: '/board',
     name: 'Board',
     component: Board
+  },
+  {
+    path: '/profile',
+    name: "Profile",
+    component: Profile
   }
 ]
 
