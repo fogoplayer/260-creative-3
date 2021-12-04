@@ -252,6 +252,9 @@ export default {
         this.addItem = r2.data;
         this.$root.$data.loggedIn = true;
         this.$root.$data.username = this.title;
+        this.$root.$data.password = this.password;
+        this.$root.$data.bio = this.bio;
+        this.$root.$data.path = r2.data.path;
       } catch (error) {
         console.log(error);
       }
