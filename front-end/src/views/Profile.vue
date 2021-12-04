@@ -1,12 +1,23 @@
 <template>
-  <form @submit.prevent>
+  <div v-if="this.$root.$data.username == ''" class="board-page">
+    <h1>Please login to</h1>
+  </div>
+  <form @submit.prevent v-else>
     <input class="username" v-model="$root.$data.username" />
     <section class="stats">
       High Score: {{ this.$root.$data.highScore }}<br />
       Games Played:
       {{ this.$root.$data.gamesPlayed }}
     </section>
-    <img class="profile-picture" :src="this.$root.$data.path" />
+    <fieldset>
+      <a class="img-link" :href="this.$root.$data.path" target="_blank">
+        <img class="profile-picture" :src="this.$root.$data.path"
+      /></a>
+      <label
+        >Update your profile picture:
+        <input type="file" name="photo" @change="fileChanged"
+      /></label>
+    </fieldset>
     <fieldset>
       <label>
         Password
@@ -26,6 +37,14 @@ import axios from "axios";
 export default {
   name: "Profile",
   methods: {
+    fileChanged(event) {
+      this.file = event.target.files[0];
+      const formData = new FormData();
+      formData.append("photo", this.file, this.file.name);
+      axios
+        .post("/api/photos", formData)
+        .then((r) => (this.$root.$data.path = r.data.path));
+    },
     updateUser: function name() {
       axios.put(`/api/items/${this.$root.$data.id}`, {
         title: this.$root.$data.username,
@@ -67,13 +86,18 @@ input {
   align-self: end;
 }
 
+.img-link {
+  align-self: center;
+  display: block;
+  width: fit-content;
+}
+
 .profile-picture {
   aspect-ratio: 1/1;
   object-fit: cover;
   width: 100%;
   max-width: 200px;
   border-radius: 50%;
-  justify-self: center;
 }
 
 fieldset {
