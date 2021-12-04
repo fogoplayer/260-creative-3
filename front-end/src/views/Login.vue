@@ -224,10 +224,10 @@ export default {
         .then((r) => {
           console.log(this);
 
-          const { title, password, path, bio, highScore, gamesPlayed } = r;
+          const { title, password, path, bio, highScore, gamesPlayed, _id } = r;
 
+          this.$root.$data.id = _id;
           this.$root.$data.username = title;
-          this.$root.$root.title = title;
           this.$root.$data.loggedIn = false;
           this.$root.$data.password = password;
           this.$root.$data.path = path;

@@ -16,7 +16,7 @@
       <textarea id="bio" class="bio" v-model="this.$root.$data.bio"> </textarea>
       <div class="btn-container">
         <button class="save">Save changes</button>
-        <button class="delete">Delete Account</button>
+        <button class="delete" @click="deleteUser">Delete Account</button>
       </div>
     </fieldset>
   </form>
@@ -24,6 +24,13 @@
 <script>
 export default {
   name: "Profile",
+  methods: {
+    deleteUser: function () {
+      fetch(`/api/items/${this.$root.$data.id}`, {
+        method: "DELETE",
+      }).then((r) => console.log(r.status));
+    },
+  },
 };
 </script>
 
