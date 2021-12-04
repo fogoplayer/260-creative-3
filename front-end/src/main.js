@@ -9,7 +9,13 @@ Vue.config.productionTip = false
 let data = {
   letters: mock,
   username: "",
-  loggedIn: false
+  loggedIn: false,
+  title: "",
+  password: "",
+  path: "",
+  bio: "",
+  highScore: 0,
+  gamesPlayed: 0,
 }
 
 new Vue({

@@ -94,7 +94,7 @@ app.post('/api/items', async (req, res) => {
 
 app.get('/api/items/:title', async (req, res) => {
     try {
-        const currUser = await Item.find({ title: req.params.title });
+        const currUser = await Item.findOne({ title: req.params.title });
         res.json(currUser).status(200);
     } catch (error) {
         console.log(error);

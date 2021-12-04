@@ -221,9 +221,19 @@ export default {
     LogIn() {
       fetch(`/api/items/${this.uzrName}`)
         .then((r) => r.json())
-        .then((r) => console.log(r));
-      this.$root.$data.loggedIn = true;
-      this.$root.$data.username = this.uzrName;
+        .then((r) => {
+          console.log(this);
+
+          const { title, password, path, bio, highScore, gamesPlayed } = r;
+
+          this.$root.$data.username = title;
+          this.$root.$data.loggedIn = false;
+          this.$root.$data.password = password;
+          this.$root.$data.path = path;
+          this.$root.$data.bio = bio;
+          this.$root.$data.highScore = highScore;
+          this.$root.$data.gamesPlayed = gamesPlayed;
+        });
     },
   },
 };
