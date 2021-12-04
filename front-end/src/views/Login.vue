@@ -52,7 +52,6 @@
   </div>
 </template>
 
-
 <style scoped>
 h1 {
   padding: 40px;
@@ -220,6 +219,9 @@ export default {
   },
   methods: {
     LogIn() {
+      fetch(`/api/items/${this.uzrName}`)
+        .then((r) => r.json())
+        .then((r) => console.log(r));
       this.$root.$data.loggedIn = true;
       this.$root.$data.username = this.uzrName;
     },
