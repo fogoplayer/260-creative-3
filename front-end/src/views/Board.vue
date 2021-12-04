@@ -4,24 +4,6 @@
   </div>
   <div class="board-page" v-else>
     <h1>{{ this.$root.$data.username }}'s Board Score: {{ getScore() }}</h1>
-
-    <!-- <dir class="LetterBank">
-      <div class="letters">
-        <div
-          class="letter"
-          v-for="letter in this.$root.$data.letters"
-          :key="letter.letter"
-        >
-          <div class="info">
-            <h1>{{ letter.letter }}</h1>
-            <p>{{ description(letter.vowel) }}</p>
-          </div>
-          <div class="pointValue">
-            <h2>{{ letter.pointValue }}</h2>
-          </div>
-        </div>
-      </div>
-    </dir> -->
     <div class="game-wrapper">
       <section class="board">
         <div class="board-table">
@@ -55,6 +37,7 @@
 
 <script>
 import LetterVue from "../components/Letter.vue";
+import axios from "axios";
 export default {
   name: "Board",
   components: { LetterVue },
@@ -65,6 +48,11 @@ export default {
       placedPieces: {},
     };
   },
+  created() {
+    axios.put(`/api/items/${this.$root.$data.id}`, {
+      gamesPlayed: ++this.$root.$data.gamesPlayed,
+    });
+  },
   methods: {
     getScore() {
       let sum = 0;
@@ -72,6 +60,12 @@ export default {
         sum +=
           this.$root.$data.letters[i].timesUsed *
           this.$root.$data.letters[i].pointValue;
+      }
+      if (this.$root.$data.highScore < sum) {
+        this.$root.$data.highScore = sum;
+        axios.put(`/api/items/${this.$root.$data.id}`, {
+          highScore: this.$root.$data.highScore,
+        });
       }
       return sum;
     },
