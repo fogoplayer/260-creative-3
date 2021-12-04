@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="">
+  <form @submit.prevent>
     <input class="username" v-model="$root.$data.username" />
     <section class="stats">
       High Score: {{ this.$root.$data.highScore }}<br />
@@ -13,18 +13,27 @@
         <input class="password" type="password" v-model="$root.$data.password"
       /></label>
       <label for="bio"> Bio</label>
-      <textarea id="bio" class="bio" v-model="this.$root.$data.bio"> </textarea>
+      <textarea id="bio" class="bio" v-model="$root.$data.bio"> </textarea>
       <div class="btn-container">
-        <button class="save">Save changes</button>
+        <button class="save" @click="updateUser">Save changes</button>
         <button class="delete" @click="deleteUser">Delete Account</button>
       </div>
     </fieldset>
   </form>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "Profile",
   methods: {
+    updateUser: function name() {
+      axios.put(`/api/items/${this.$root.$data.id}`, {
+        title: this.$root.$data.username,
+        password: this.$root.$data.password,
+        path: this.$root.$data.path,
+        bio: this.$root.$data.bio,
+      });
+    },
     deleteUser: function () {
       fetch(`/api/items/${this.$root.$data.id}`, {
         method: "DELETE",

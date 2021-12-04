@@ -50,6 +50,21 @@ app.delete('/api/items/:id', async (req, res) => {
     }
 });
 
+// Update user
+app.put('/api/items/:id', async (req, res) => {
+    console.log("Update", req.params.id);
+    try {
+        console.log(req.body)
+        item = await Item.findOneAndUpdate({
+            _id: req.params.id
+        }, req.body);
+        res.json(item);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
+
 // Get a list of all of the items/users in the db.
 app.get('/api/items', async (req, res) => {
     try {
