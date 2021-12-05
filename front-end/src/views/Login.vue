@@ -228,7 +228,7 @@ export default {
 
           this.$root.$data.id = _id;
           this.$root.$data.username = title;
-          this.$root.$data.loggedIn = false;
+          this.$root.$data.loggedIn = true;
           this.$root.$data.password = password;
           this.$root.$data.path = path;
           this.$root.$data.bio = bio;
