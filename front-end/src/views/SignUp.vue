@@ -255,6 +255,7 @@ export default {
         this.$root.$data.password = this.password;
         this.$root.$data.bio = this.bio;
         this.$root.$data.path = r2.data.path;
+        this.$root.$data.loggedIn = true;
       } catch (error) {
         console.log(error);
       }
